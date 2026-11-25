@@ -2,6 +2,9 @@
 
 [English](README.md) · **Русский**
 
+| ![Задачи студента](screenshots/02-tasks-student.png) | ![Страница администратора](screenshots/04-admin.png) |
+|---|---|
+
 Домашнее задание по Web Development 2: Express, EJS, сессии, роли и промежуточные обработчики.
 
 ## Запуск

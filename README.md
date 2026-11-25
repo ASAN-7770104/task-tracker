@@ -2,6 +2,9 @@
 
 **English** · [Русский](README.ru.md)
 
+| ![Tasks of a student](screenshots/02-tasks-student.png) | ![Admin page](screenshots/04-admin.png) |
+|---|---|
+
 Homework Assignment 2, Web Development 2.
 
 ## How to run
