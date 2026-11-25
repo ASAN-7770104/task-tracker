@@ -17,7 +17,11 @@ router.post('/login', validateLogin, (req, res) => {
   const user = getUsers().find((u) => u.username === username && u.password === password);
 
   if (!user) {
-    return res.status(401).render('login', { title: 'Login', error: 'Invalid credentials', username });
+    return res.status(401).render('login', {
+      title: 'Login',
+      error: 'Invalid credentials',
+      username
+    });
   }
 
   req.session.user = { username: user.username, role: user.role };
@@ -25,7 +29,6 @@ router.post('/login', validateLogin, (req, res) => {
 });
 
 router.post('/logout', requireAuth, (req, res) => {
-  res.locals.loggedOutUser = req.session.user.username; // so the logger can still name the user
   req.session.destroy(() => {
     res.redirect('/');
   });

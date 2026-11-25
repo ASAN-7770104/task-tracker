@@ -1,18 +1,18 @@
-<nav class="nav">
-  <span class="brand">Task Tracker</span>
-  <% if (currentUser) { %>
-    <a href="/tasks">Tasks</a>
-    <% if (currentUser.role === 'admin') { %>
-      <a href="/admin">Admin</a>
+<header>
+  <nav>
+    <strong>Task Tracker</strong>
+    <% if (currentUser) { %>
+      <a href="/tasks">Tasks</a>
+      <% if (currentUser.role === 'admin') { %>
+        <a href="/admin">Admin</a>
+      <% } %>
+      <span>Logged in as <%= currentUser.username %></span>
+      <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+      </form>
+    <% } else { %>
+      <a href="/">Login</a>
     <% } %>
-    <span class="spacer"></span>
-    <span class="who">Logged in as <strong><%= currentUser.username %></strong> (<%= currentUser.role %>)</span>
-    <form action="/logout" method="POST" class="inline">
-      <button type="submit" class="link-button">Logout</button>
-    </form>
-  <% } else { %>
-    <span class="spacer"></span>
-    <a href="/">Login</a>
-  <% } %>
-</nav>
-<main class="container">
+  </nav>
+</header>
+<main>

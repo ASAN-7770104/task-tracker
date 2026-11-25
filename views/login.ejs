@@ -1,22 +1,20 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %>
 
-<section class="card narrow">
-  <h1>Login</h1>
+<h1>Login</h1>
 
-  <% if (error) { %>
-    <p class="error"><%= error %></p>
-  <% } %>
+<% if (error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
 
-  <form action="/login" method="POST">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" value="<%= username %>">
+<form action="/login" method="POST">
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" value="<%= username %>">
 
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password">
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password">
 
-    <button type="submit">Log in</button>
-  </form>
-</section>
+  <button type="submit">Log in</button>
+</form>
 
 <%- include('partials/footer') %>

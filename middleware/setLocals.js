@@ -1,9 +1,9 @@
-// M4: data that every view needs, so we don't pass it in each res.render()
+// values that every view needs
 function setLocals(req, res, next) {
   res.locals.currentUser = req.session.user || null;
   res.locals.currentYear = new Date().getFullYear();
 
-  // flash message lives in the session until the next page reads it once
+  // the flash message is shown once and then removed from the session
   res.locals.flash = req.session.flash || null;
   delete req.session.flash;
 

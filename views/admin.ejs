@@ -1,33 +1,48 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %>
 
-<h1>Admin panel</h1>
+<h1>Admin</h1>
 
-<section class="card">
-  <h2>Tasks per user</h2>
-  <table>
-    <thead>
-      <tr><th>User</th><th>Tasks</th></tr>
-    </thead>
-    <tbody>
-      <% counts.forEach(function (c) { %>
-        <tr>
-          <td><%= c.username %></td>
-          <td><%= c.total %></td>
-        </tr>
-      <% }); %>
-    </tbody>
-  </table>
-</section>
+<h2>Tasks per user</h2>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Tasks</th>
+  </tr>
+  <% counts.forEach(function (row) { %>
+    <tr>
+      <td><%= row.username %></td>
+      <td><%= row.total %></td>
+    </tr>
+  <% }) %>
+</table>
 
-<section class="card">
-  <h2>Last 10 lines of access.log</h2>
-  <% if (logLines.length === 0) { %>
-    <p class="empty">The log is empty.</p>
-  <% } else { %>
-    <pre class="log"><% logLines.forEach(function (line) { %><%= line %>
-<% }); %></pre>
-  <% } %>
-</section>
+<h2>All tasks</h2>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Owner</th>
+    <th></th>
+  </tr>
+  <% tasks.forEach(function (task) { %>
+    <tr class="priority-<%= task.priority %>">
+      <td><%= task.title %></td>
+      <td><%= task.owner %></td>
+      <td>
+        <form action="/admin/tasks/<%= task.id %>/delete" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<h2>Last 10 lines of access.log</h2>
+<% if (logLines.length === 0) { %>
+  <p>No log lines yet</p>
+<% } else { %>
+  <pre><% logLines.forEach(function (line) { %><%= line %>
+<% }) %></pre>
+<% } %>
 
 <%- include('partials/footer') %>

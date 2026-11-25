@@ -1,26 +1,25 @@
 const fs = require('fs');
 const path = require('path');
 
-const LOG_DIR = path.join(__dirname, '..', 'logs');
-const LOG_FILE = path.join(LOG_DIR, 'access.log');
+const logDir = path.join(__dirname, '..', 'logs');
+const logFile = path.join(logDir, 'access.log');
 
-fs.mkdirSync(LOG_DIR, { recursive: true });
+fs.mkdirSync(logDir, { recursive: true });
 
-// M1: logs every request AFTER the response has been sent,
-// so the real status code and the duration are known.
+// writes one line per request once the response has been sent
 function requestLogger(req, res, next) {
   const start = Date.now();
 
   res.on('finish', () => {
-    const ms = Date.now() - start;
-    const user = req.session && req.session.user;
-    // after logout the session is already destroyed, the logout route leaves the name in res.locals
-    const who = user ? user.username : (res.locals.loggedOutUser || 'guest');
-    const line = `[${new Date().toISOString()}] ${req.method} ${req.originalUrl} ${res.statusCode} - ${ms}ms - ${who}`;
+    const duration = Date.now() - start;
+    // after logout the session is already destroyed, so fall back to res.locals
+    const user = (req.session && req.session.user) || res.locals.currentUser;
+    const who = user ? user.username : 'guest';
+    const line = `[${new Date().toISOString()}] ${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms - ${who}`;
 
     console.log(line);
-    fs.appendFile(LOG_FILE, line + '\n', (err) => {
-      if (err) console.error('Could not write access.log:', err.message);
+    fs.appendFile(logFile, line + '\n', (err) => {
+      if (err) console.error(err);
     });
   });
 

@@ -1,7 +1,7 @@
 {
   "name": "tasktracker",
   "version": "1.0.0",
-  "description": "Student Task Tracker - Express middleware + EJS",
+  "description": "Web Development 2 - Homework Assignment 2: Express Middleware & EJS (Student Task Tracker)",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

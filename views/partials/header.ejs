@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= typeof title !== 'undefined' ? title : 'Task Tracker' %> | Task Tracker</title>
+  <title><%= title %> - Task Tracker</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <% if (flash) { %>
-  <div class="flash"><%= flash %></div>
+  <p class="flash"><%= flash %></p>
 <% } %>

@@ -1,6 +1,6 @@
 const { findTask } = require('../lib/store');
 
-// M9: finds the task by :id and attaches it as req.task
+// finds the task from :id and puts it in req.task
 function loadTask(req, res, next) {
   const task = findTask(Number(req.params.id));
 
@@ -12,7 +12,7 @@ function loadTask(req, res, next) {
 
   const user = req.session.user;
   if (user.role !== 'admin' && task.owner !== user.username) {
-    const err = new Error('You are not allowed to open this task');
+    const err = new Error('You cannot open this task');
     err.status = 403;
     return next(err);
   }

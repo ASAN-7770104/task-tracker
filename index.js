@@ -7,43 +7,43 @@ const setLocals = require('./middleware/setLocals');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
 
-const authRoutes = require('./routes/auth');
-const taskRoutes = require('./routes/tasks');
-const adminRoutes = require('./routes/admin');
+const authRouter = require('./routes/auth');
+const tasksRouter = require('./routes/tasks');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 const PORT = 3000;
-const SESSION_SECRET = 'task-tracker-dev-secret';
+const SESSION_SECRET = 'tasktracker-secret';
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// global middleware - the order matters, see README
-app.use(requestLogger);                                        // M1
-app.use(express.static(path.join(__dirname, 'public')));       // M2
-app.use(express.urlencoded({ extended: false }));              // M2
-app.use(session({                                              // M3
+// global middleware, order matters
+app.use(requestLogger);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
+app.use(session({
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 30 * 60 * 1000 }
 }));
-app.use(setLocals);                                            // M4
+app.use(setLocals);
 
 // routers
-app.use('/', authRoutes);
-app.use('/tasks', taskRoutes);
-app.use('/admin', adminRoutes);
+app.use('/', authRouter);
+app.use('/tasks', tasksRouter);
+app.use('/admin', adminRouter);
 
-// deliberately broken route to prove that errorHandler works
+// used to check that errorHandler works
 app.get('/crash-test', () => {
   throw new Error('Test crash');
 });
 
-// must stay last
-app.use(notFound);        // M10
-app.use(errorHandler);    // M11
+// must be last
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Task Tracker running on http://localhost:${PORT}`);
+  console.log(`Task Tracker is running on http://localhost:${PORT}`);
 });
