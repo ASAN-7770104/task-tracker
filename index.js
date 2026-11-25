@@ -12,8 +12,9 @@ const taskRoutes = require('./routes/tasks');
 const adminRoutes = require('./routes/admin');
 
 const app = express();
-const PORT = 3000;
-const SESSION_SECRET = 'task-tracker-dev-secret';
+const PORT = process.env.PORT || 3000;
+// Set SESSION_SECRET in production; the fallback is for local development only.
+const SESSION_SECRET = process.env.SESSION_SECRET || 'task-tracker-dev-secret';
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
