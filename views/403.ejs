@@ -1,0 +1,10 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<section class="card narrow">
+  <h1>403 - Forbidden</h1>
+  <p>You do not have permission to open this page. The <strong><%= requiredRole %></strong> role is required.</p>
+  <a href="/tasks">Back to my tasks</a>
+</section>
+
+<%- include('partials/footer') %>

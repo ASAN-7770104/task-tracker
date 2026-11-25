@@ -1,0 +1,14 @@
+{
+  "name": "tasktracker",
+  "version": "1.0.0",
+  "description": "Student Task Tracker - Express middleware + EJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
+  }
+}

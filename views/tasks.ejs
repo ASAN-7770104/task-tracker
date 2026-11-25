@@ -1,0 +1,79 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<h1><%= currentUser.role === 'admin' ? 'All tasks' : 'My tasks' %></h1>
+
+<p class="filters">
+  Show:
+  <a href="/tasks" class="<%= statusFilter === '' ? 'active' : '' %>">all</a> |
+  <a href="/tasks?status=open" class="<%= statusFilter === 'open' ? 'active' : '' %>">open</a> |
+  <a href="/tasks?status=done" class="<%= statusFilter === 'done' ? 'active' : '' %>">done</a>
+</p>
+
+<% if (tasks.length === 0) { %>
+  <p class="empty">No tasks yet</p>
+<% } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Priority</th>
+        <th>Due</th>
+        <th>Status</th>
+        <th>Owner</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tasks.forEach(function (t) { %>
+        <tr class="priority-<%= t.priority %>">
+          <td><%= t.id %></td>
+          <td><a href="/tasks/<%= t.id %>"><%= t.title %></a></td>
+          <td><%= t.priority %></td>
+          <td><%= t.due %></td>
+          <td><%= t.status %></td>
+          <td><%= t.owner %></td>
+          <td>
+            <% if (t.status === 'open') { %>
+              <form action="/tasks/<%= t.id %>/done" method="POST" class="inline">
+                <button type="submit">Done</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } %>
+
+<section class="card">
+  <h2>Add task</h2>
+
+  <% if (errors.length > 0) { %>
+    <ul class="error-list">
+      <% errors.forEach(function (msg) { %>
+        <li><%= msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+
+  <form action="/tasks" method="POST">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="<%= input.title %>">
+
+    <label for="priority">Priority</label>
+    <select id="priority" name="priority">
+      <% ['low', 'medium', 'high'].forEach(function (p) { %>
+        <option value="<%= p %>" <%= input.priority === p ? 'selected' : '' %>><%= p %></option>
+      <% }); %>
+    </select>
+
+    <label for="due">Due date</label>
+    <input type="text" id="due" name="due" placeholder="YYYY-MM-DD" value="<%= input.due %>">
+
+    <button type="submit">Add task</button>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

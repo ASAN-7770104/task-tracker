@@ -1,0 +1,97 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f4f5f7;
+  color: #222;
+  line-height: 1.5;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: #1f2937;
+  color: #fff;
+}
+.nav a { color: #cbd5e1; text-decoration: none; }
+.nav a:hover { color: #fff; }
+.nav .brand { font-weight: bold; margin-right: 12px; }
+.nav .spacer { flex: 1; }
+
+.container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+
+.footer { text-align: center; color: #777; padding: 24px; font-size: 14px; }
+
+.flash {
+  background: #dcfce7;
+  border-bottom: 1px solid #86efac;
+  color: #166534;
+  padding: 10px 24px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.card.narrow { max-width: 420px; margin-left: auto; margin-right: auto; }
+
+label { display: block; margin-top: 12px; font-weight: bold; }
+input[type="text"], input[type="password"], select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 14px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 4px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+button:hover { background: #1d4ed8; }
+form.inline { display: inline; }
+form.inline button { margin-top: 0; }
+.link-button { background: none; color: #cbd5e1; padding: 0; }
+.link-button:hover { background: none; color: #fff; }
+
+.error { background: #fee2e2; color: #991b1b; padding: 8px 12px; border-radius: 4px; }
+.error-list { background: #fee2e2; color: #991b1b; padding: 8px 12px 8px 32px; border-radius: 4px; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e7eb; }
+th { background: #e5e7eb; }
+
+tr.priority-high td:nth-child(3), dd.priority-high { color: #b91c1c; font-weight: bold; }
+tr.priority-medium td:nth-child(3), dd.priority-medium { color: #b45309; font-weight: bold; }
+tr.priority-low td:nth-child(3), dd.priority-low { color: #15803d; font-weight: bold; }
+tr.priority-high { border-left: 4px solid #ef4444; }
+tr.priority-medium { border-left: 4px solid #f59e0b; }
+tr.priority-low { border-left: 4px solid #22c55e; }
+
+.filters a.active { font-weight: bold; text-decoration: none; }
+.empty { color: #666; font-style: italic; }
+
+dl { display: grid; grid-template-columns: 100px 1fr; gap: 6px 12px; }
+dt { font-weight: bold; }
+dd { margin: 0; }
+
+.log {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}

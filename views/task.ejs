@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<section class="card">
+  <h1><%= task.title %></h1>
+  <dl>
+    <dt>ID</dt><dd><%= task.id %></dd>
+    <dt>Priority</dt><dd class="priority-<%= task.priority %>"><%= task.priority %></dd>
+    <dt>Due</dt><dd><%= task.due %></dd>
+    <dt>Status</dt><dd><%= task.status %></dd>
+    <dt>Owner</dt><dd><%= task.owner %></dd>
+  </dl>
+
+  <% if (task.status === 'open') { %>
+    <form action="/tasks/<%= task.id %>/done" method="POST" class="inline">
+      <button type="submit">Mark as done</button>
+    </form>
+  <% } %>
+  <a href="/tasks">Back to the list</a>
+</section>
+
+<%- include('partials/footer') %>
