@@ -1,5 +1,7 @@
 # Student Task Tracker (Express middleware + EJS)
 
+**English** · [Русский](README.ru.md)
+
 Homework Assignment 2, Web Development 2.
 
 ## How to run
